@@ -7,7 +7,9 @@ const PRODUCTS = [
     {category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
   ];
 
-class FilterableProductTable extends React.Component {
+
+
+class FilterableProductTable extends React.PureComponent {
     constructor(props){
         super(props)
         this.state = {
@@ -19,6 +21,10 @@ class FilterableProductTable extends React.Component {
 
     }
     
+    // shouldComponentUpdate(nextProps,nextState){
+    //     return false;
+    // }
+
     handleFilterTextChange(filterText){
         this.setState({filterText})
     }
@@ -131,4 +137,12 @@ class Home extends React.Component{
     }
 }
 
-ReactDOM.render(<Home></Home>, document.querySelector('#app'));
+ReactDOM.render(<FilterableProductTable products={PRODUCTS}></FilterableProductTable>, document.querySelector('#app'));
+
+const PRODUCTS2 = [...PRODUCTS,{category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 8"}]
+
+window.setTimeout(function () {
+    ReactDOM.render(<FilterableProductTable products={PRODUCTS2}></FilterableProductTable>, document.querySelector('#app'));
+},2000)
+
+
